@@ -1,5 +1,6 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter
 from app.controllers import handle_webhook
+from app.models import JiraWebhookPayload
 
 router = APIRouter(prefix="/webhooks/jira", tags=["jira"])
 
