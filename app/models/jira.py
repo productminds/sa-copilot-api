@@ -1,11 +1,12 @@
+from typing import Any
+
 from pydantic import BaseModel
-from typing import Any, Optional
 
 
 class JiraUser(BaseModel):
-    accountId: Optional[str] = None
-    displayName: Optional[str] = None
-    emailAddress: Optional[str] = None
+    accountId: str | None = None
+    displayName: str | None = None
+    emailAddress: str | None = None
 
 
 class JiraIssue(BaseModel):
@@ -16,8 +17,8 @@ class JiraIssue(BaseModel):
 
 class JiraWebhookPayload(BaseModel):
     webhookEvent: str
-    timestamp: Optional[int] = None
-    issue: Optional[JiraIssue] = None
-    user: Optional[JiraUser] = None
-    changelog: Optional[dict[str, Any]] = None
-    comment: Optional[dict[str, Any]] = None
+    timestamp: int | None = None
+    issue: JiraIssue | None = None
+    user: JiraUser | None = None
+    changelog: dict[str, Any] | None = None
+    comment: dict[str, Any] | None = None

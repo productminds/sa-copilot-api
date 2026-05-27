@@ -1,5 +1,8 @@
 import random
-from .base import AIService, AIContext, AIResponse, AIAnalysis
+from collections.abc import Callable
+from typing import Any
+
+from .base import AIAnalysis, AIContext, AIResponse, AIService
 
 _MODEL = "mock-ai-v1"
 
@@ -9,7 +12,7 @@ _RESPONSE_TEMPLATES = [
     "For {key}, this looks actionable. Suggest triaging '{summary}' in the next sprint.",
 ]
 
-_ANALYSIS_HANDLERS: dict = {
+_ANALYSIS_HANDLERS: dict[str, Callable[[AIContext], dict[str, Any]]] = {
     "sentiment": lambda ctx: {
         "sentiment": "neutral",
         "score": 0.5,

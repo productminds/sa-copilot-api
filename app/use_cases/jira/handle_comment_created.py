@@ -1,6 +1,7 @@
 import logging
+
 from app.models import JiraWebhookPayload
-from app.services.ai import get_ai_service, AIContext
+from app.services.ai import AIContext, get_ai_service
 
 logger = logging.getLogger(__name__)
 
@@ -12,7 +13,7 @@ async def execute(payload: JiraWebhookPayload) -> None:
     if not issue or not payload.comment:
         return
 
-    comment_body = payload.comment.get("body", "")
+    comment_body = str(payload.comment.get("body") or "")
     context = AIContext(
         issue_key=issue.key,
         summary=issue.fields.get("summary"),

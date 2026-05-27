@@ -1,6 +1,7 @@
 import logging
+
 from app.models import JiraWebhookPayload
-from app.services.ai import get_ai_service, AIContext
+from app.services.ai import AIContext, get_ai_service
 
 logger = logging.getLogger(__name__)
 

@@ -1,15 +1,16 @@
 import logging
+
 from app.models import JiraWebhookPayload
 from app.use_cases.jira import (
+    handle_comment_created,
     handle_issue_created,
     handle_issue_updated,
-    handle_comment_created,
 )
 
 logger = logging.getLogger(__name__)
 
 
-async def handle_webhook(payload: JiraWebhookPayload) -> dict:
+async def handle_webhook(payload: JiraWebhookPayload) -> dict[str, bool | str]:
     logger.info("Received Jira event: %s", payload.webhookEvent)
 
     if payload.webhookEvent == "jira:issue_created":
