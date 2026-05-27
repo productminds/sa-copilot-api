@@ -1,5 +1,11 @@
-from fastapi import FastAPI, Request, HTTPException
+import logging
+
+from fastapi import FastAPI
+
+from app.config import get_settings
 from app.routers import jira
+
+logging.basicConfig(level=get_settings().log_level)
 
 app = FastAPI(title="SA Copilot API")
 

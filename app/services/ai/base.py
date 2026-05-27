@@ -1,12 +1,13 @@
 from abc import ABC, abstractmethod
-from typing import Any, Optional
+from typing import Any
+
 from pydantic import BaseModel
 
 
 class AIContext(BaseModel):
-    issue_key: Optional[str] = None
-    summary: Optional[str] = None
-    description: Optional[str] = None
+    issue_key: str | None = None
+    summary: str | None = None
+    description: str | None = None
     comments: list[str] = []
     metadata: dict[str, Any] = {}
 
