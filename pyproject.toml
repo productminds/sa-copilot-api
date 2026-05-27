@@ -1,0 +1,59 @@
+[project]
+name = "sa-copilot-api"
+requires-python = ">=3.11"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["app", "main.py"]
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort
+    "B",      # flake8-bugbear
+    "UP",     # pyupgrade
+    "ASYNC",  # flake8-async
+    "FAST",   # FastAPI-specific rules
+    "SIM",    # flake8-simplify
+    "RUF",    # Ruff-specific rules
+]
+ignore = [
+    "B008",   # Depends() in defaults — idiomatic in FastAPI route signatures
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+
+[tool.basedpyright]
+include = ["app", "main.py"]
+exclude = [".venv", "source", "**/__pycache__"]
+pythonVersion = "3.11"
+typeCheckingMode = "standard"
+venvPath = "."
+venv = ".venv"
+
+# inheritance and contracts (e.g. concrete class without implementing abstract methods)
+reportImplicitAbstractClass = "error"
+reportIncompatibleMethodOverride = "error"
+reportInvalidAbstractMethod = "error"
+reportMissingTypeArgument = "error"
+
+# ruff already covers unused imports
+reportUnusedImport = "none"
+
+# dynamic data from Jira webhook
+reportExplicitAny = "none"
+reportAny = "warning"
+reportImplicitOverride = "none"
+reportUnannotatedClassAttribute = "none"
