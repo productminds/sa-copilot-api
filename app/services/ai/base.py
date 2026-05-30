@@ -1,31 +1,24 @@
 from abc import ABC, abstractmethod
-from typing import Any
 
-from pydantic import BaseModel
-
-
-class AIContext(BaseModel):
-    issue_key: str | None = None
-    summary: str | None = None
-    description: str | None = None
-    comments: list[str] = []
-    metadata: dict[str, Any] = {}
-
-
-class AIResponse(BaseModel):
-    content: str
-    model: str
-    usage: dict[str, int] = {}
-
-
-class AIAnalysis(BaseModel):
-    analysis_type: str
-    result: dict[str, Any]
-    confidence: float
-    model: str
+from app.services.ai.schemas import AIAnalysis, AIContext, AIResponse
 
 
 class AIService(ABC):
+    """Standard contract every AI provider must implement.
+
+    Lifecycle hooks (`setup`/`teardown`) are optional and default to no-ops,
+    so providers without external resources don't need to override them.
+    Providers like Agno override them to manage tool connections.
+    """
+
+    async def setup(self) -> None:
+        """Acquire external resources at application startup. No-op by default."""
+        return None
+
+    async def teardown(self) -> None:
+        """Release external resources at application shutdown. No-op by default."""
+        return None
+
     @abstractmethod
     async def generate_response(self, context: AIContext, prompt: str) -> AIResponse: ...
 

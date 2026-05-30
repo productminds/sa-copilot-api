@@ -1,7 +1,7 @@
 import logging
 
 from app.config import get_settings
-from app.services.ai.agno_service import AgnoService
+from app.services.ai.agno.service import AgnoService
 from app.services.ai.base import AIService
 from app.services.ai.mock import MockAIService
 
@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 def _build_ai_service() -> AIService:
     settings = get_settings()
     if settings.ai_provider == "agno":
-        logger.info("Initializing AgnoService with BigQuery tools")
+        logger.info("Initializing AgnoService")
         return AgnoService.from_settings(settings)
     return MockAIService()
 

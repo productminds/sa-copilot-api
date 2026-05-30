@@ -21,4 +21,6 @@ async def execute(payload: JiraWebhookPayload) -> None:
         comments=[comment_body],
     )
     response = await get_ai_service().generate_response(context, comment_body)
-    logger.info("AI suggested response for %s (model=%s): %s", issue.key, response.model, response.content)
+    logger.debug(
+        "[DEBUG] - AI suggested response for %s (model=%s): %s", issue.key, response.model, response.content
+    )

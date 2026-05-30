@@ -18,5 +18,5 @@ async def execute(payload: JiraWebhookPayload) -> None:
         summary=issue.fields.get("summary"),
         description=issue.fields.get("description"),
     )
-    analysis = await get_ai_service().analyze(context, "priority")
-    logger.info("AI priority analysis for %s (confidence=%.2f): %s", issue.key, analysis.confidence, analysis.result)
+    response = await get_ai_service().generate_response(context, "priority")
+    logger.info("AI priority analysis for %s (model=%s): %s", issue.key, response.model, response.content)

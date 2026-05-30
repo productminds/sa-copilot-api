@@ -2,4 +2,5 @@ fastapi[standard]>=0.115.0
 uvicorn[standard]>=0.30.0
 pydantic>=2.0.0
 python-dotenv>=1.0.0
-agno[anthropic,google-bigquery]>=2.6.0
+agno[anthropic]>=2.6.0
+mcp>=1.0.0

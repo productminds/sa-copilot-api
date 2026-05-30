@@ -2,7 +2,8 @@ import random
 from collections.abc import Callable
 from typing import Any
 
-from .base import AIAnalysis, AIContext, AIResponse, AIService
+from .base import AIService
+from .schemas import AIAnalysis, AIContext, AIResponse
 
 _MODEL = "mock-ai-v1"
 

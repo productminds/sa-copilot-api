@@ -20,4 +20,4 @@ async def execute(payload: JiraWebhookPayload) -> None:
         metadata={"changelog": payload.changelog or {}},
     )
     analysis = await get_ai_service().analyze(context, "sentiment")
-    logger.info("AI sentiment analysis for %s (confidence=%.2f): %s", issue.key, analysis.confidence, analysis.result)
+    logger.debug("[DEBUG] - AI sentiment analysis for %s (confidence=%.2f): %s", issue.key, analysis.confidence, analysis.result)
