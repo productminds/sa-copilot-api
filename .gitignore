@@ -49,4 +49,6 @@ htmlcov/
 *.log
 logs/
 
+# AI Helpers
 .cursorrules
+.cursor/
